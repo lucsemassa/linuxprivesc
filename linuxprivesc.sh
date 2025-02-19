@@ -1369,13 +1369,13 @@ echo ""
 echo ""
 
 if [[ $(which netstat) ]]; then 
-for i in $(netstat -anpte 2>/dev/null | grep -i listen | awk '{print $4}'); do 
+for i in $(netstat -anpte 2>/dev/null | grep "127.0.0.1" | grep -i listen | awk '{print $4}'); do 
   if curl -s --connect-timeout 1 $i >/dev/null; then 
     echo "Local web server available at $i"; 
   fi; 
 done
 else
-for i in $(ss -tulnp | grep -i listen | awk '{print $5}'); do 
+for i in $(ss -tulnp  | grep "127.0.0.1" |  grep -i listen | awk '{print $5}'); do 
   if curl -s --connect-timeout 1 $i >/dev/null; then 
     echo "Local web server available at $i"; 
   fi; 
