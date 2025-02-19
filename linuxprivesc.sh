@@ -1360,6 +1360,28 @@ echo ""
 
 if [[ $(which netstat) ]]; then netstat -antep | grep -i established; else ss -tuenp; fi
 
+echo ""
+echo ""
+echo "#####################################################"
+echo "Local Web application"
+echo "#####################################################"
+echo ""
+echo ""
+
+if [[ $(which netstat) ]]; then 
+for i in $(netstat -anpte 2>/dev/null | grep -i listen | awk '{print $4}'); do 
+  if curl -s --connect-timeout 1 $i >/dev/null; then 
+    echo "Local web server available at $i"; 
+  fi; 
+done
+else
+for i in $(ss -tulnp | grep -i listen | awk '{print $5}'); do 
+  if curl -s --connect-timeout 1 $i >/dev/null; then 
+    echo "Local web server available at $i"; 
+  fi; 
+done
+fi
+
 
 echo ""
 echo ""
